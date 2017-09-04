@@ -10,14 +10,15 @@ module.exports = {
     var requestUrl = `${OPEN_WERATHER_MAP_URL}&q=${encodedLocation}`; //query string
 
     return axios.get(requestUrl).then(function (res) {
-      
+
       if (res.data.cod && res.data.message) {
         throw new Error(res.data.message);
       } else {
         return res.data.main.temp;
       }
-    }, function (error) {
-      throw new Error(error.response.data.message);
+    }, function (err) {
+      //throw new Error(error.response.data.message);
+      throw new Error('Unable to fetch weather for that location.');
     });
 
   }
